@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "./App.css";
 
 function TodoApp() {
   const [todoName, setTodoName] = useState<string>("");
-  const [todoList, setTodoList] = useState<Array<string> | []>([]);
+  const [todoList, setTodoList] = useState<Array<{ name: string }> | []>([]);
 
-
-  const submitHandler = (e) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setTodoList((prev) => [...prev, todoName]);
+    setTodoList((prev) => [...prev, { name: todoName }]);
 
     setTodoName("");
   };
 
-  const changeHandler = (e) => {
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTodoName(e.target.value);
   };
 
@@ -39,6 +38,10 @@ function TodoApp() {
         <button type="submit">Add</button>
       </form>
       {/* Todo List */}
+      <h1>Todo List</h1>
+      {todoList.map((val) => {
+        return <p>{val.name}</p>;
+      })}
     </div>
   );
 }
