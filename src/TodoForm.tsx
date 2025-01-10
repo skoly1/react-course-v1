@@ -1,19 +1,21 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { createTodo } from "./backend";
 
 interface FormProps {
-  setTodoList: React.Dispatch<
-    React.SetStateAction<{ name: string; id: number }[]>
-  >;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  getTodosData: () => void;
 }
 
-const TodoForm: React.FC<FormProps> = ({ setTodoList }) => {
+const TodoForm: React.FC<FormProps> = ({ setLoading, getTodosData }) => {
   const [todoName, setTodoName] = useState<string>("");
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setTodoList((prev) => [...prev, { name: todoName, id: Date.now() }]);
-
+    setLoading(true);
+    createTodo(todoName).then(() => {
+      getTodosData();
+    });
     setTodoName("");
   };
 
