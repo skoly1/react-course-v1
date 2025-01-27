@@ -28,3 +28,20 @@ Add some css design
 Added delete
 split components
 how to pass values from handlers without executing function
+
+
+APIS:
+
+1. get > 
+2. post > create
+3. put > update
+4. delete > 
+
+
+Frontend > user interface 
+Backend > functionality
+Database > data store 
+
+API > multiple ways to pass data >>
+
+Work on Delete and put apis.

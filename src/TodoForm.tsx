@@ -4,9 +4,14 @@ import { createTodo } from "./backend";
 interface FormProps {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   getTodosData: () => void;
+  loading: boolean;
 }
 
-const TodoForm: React.FC<FormProps> = ({ setLoading, getTodosData }) => {
+const TodoForm: React.FC<FormProps> = ({
+  setLoading,
+  getTodosData,
+  loading,
+}) => {
   const [todoName, setTodoName] = useState<string>("");
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -39,7 +44,9 @@ const TodoForm: React.FC<FormProps> = ({ setLoading, getTodosData }) => {
           name="todoName"
           onChange={changeHandler}
         />
-        <button type="submit">Add</button>
+        <button disabled={loading} type="submit">
+          Add
+        </button>
       </form>
     </>
   );

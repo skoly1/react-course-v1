@@ -6,7 +6,7 @@ import { getTodos } from "./backend";
 
 function TodoApp() {
   const [todoList, setTodoList] = useState<
-    Array<{ name: string; id: number }> | []
+    Array<{ title: string; id: number }> | []
   >([]);
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +25,11 @@ function TodoApp() {
 
   return (
     <div style={{ margin: "2rem" }}>
-      <TodoForm setLoading={setLoading} getTodosData={getTodosData} />
+      <TodoForm
+        setLoading={setLoading}
+        getTodosData={getTodosData}
+        loading={loading}
+      />
 
       {loading ? (
         <div>Loading...</div>

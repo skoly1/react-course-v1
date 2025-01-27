@@ -1,18 +1,14 @@
 import React from "react";
 
 interface ListProps {
-  todoList: Array<{ name: string; id: number }>;
+  todoList: Array<{ title: string; id: number }>;
   setTodoList: React.Dispatch<
-    React.SetStateAction<Array<{ name: string; id: number }>>
+    React.SetStateAction<Array<{ title: string; id: number }>>
   >;
 }
 
 const TodoList: React.FC<ListProps> = ({ todoList, setTodoList }) => {
-  const deleteHandler = (id: number) => {
-    setTodoList((prev) => {
-      return prev.filter((val) => val.id !== id);
-    });
-  };
+  const deleteHandler = (id: number) => {};
   return (
     <>
       {/* Todo List */}
@@ -20,7 +16,7 @@ const TodoList: React.FC<ListProps> = ({ todoList, setTodoList }) => {
       {todoList.map((val) => {
         return (
           <div style={{ display: "flex", gap: "20px" }} key={val.id}>
-            <p>{val.name}</p>
+            <p>{val.title}</p>
             <button onClick={() => deleteHandler(val.id)}>Delete</button>
           </div>
         );
